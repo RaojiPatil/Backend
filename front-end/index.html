@@ -20,9 +20,14 @@
         <input type="text" id="id" placeholder="id">
         <input type="text" id="name" placeholder="name">
         <input type="text" id="price" placeholder="price">
-
+        <button onclick="addProduct()"> addProduct</button>
     </div>
-    <button onclick="addProduct()"> addProduct</button>
+
+    <h2>Delet Product</h2>
+    <div>
+        <input type="text" id="product_id" placeholder="id">
+        <button onclick="deleteProduct()"> deleteProduct</button>
+    </div>
 </body>
 
 </html>
@@ -50,5 +55,18 @@
         } catch (e) {
             console.log(e);
         }
+    }
+
+
+    async function deleteProduct() {
+
+        let id = document.getElementById("product_id").value;
+        let response = await fetch(`http://localhost:5000/api/products/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+
+            },
+        });
     }
 </script>
